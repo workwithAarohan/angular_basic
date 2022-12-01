@@ -1,0 +1,66 @@
+<!-- property binding -->
+
+<!-- <input type="text" [value]="default" />
+
+<button type="button" [disabled]="btnDisabled">Click</button> -->
+
+<!-- event binding -->
+<!-- <button type="button" (click)="onClick()">Click Me</button> -->
+
+<!-- two way binding -->
+<!-- <div>
+    <button type="button" (click)="desc()">-</button>
+    <button type="button" (click)="inc()">+</button>
+    <span [style.font-size.px]="px">Font Size {{px}}px</span>
+</div> -->
+
+<!-- local reference -->
+<!-- <input type="text" id="phoneNo" #phone />
+<button type="button"(click)="ClickIt(phone.value)">Click It</button> -->
+
+<!-- ngmodel -->
+
+<div class="container mt-4">
+    <div class="mb-4">
+        
+        <div class="row justify-content-between">
+            <div class="col-md-5 border p-3 mb-3 h-100">
+                <h4 class="fw-bold">Add Images</h4>
+                
+                <div class="mb-3">
+                    <label for="img_name" class="form-label">Image Name</label>
+                    <input type="text" class="form-control" id="img_name" #img_name [value]="image_name" />
+                </div>
+                <div class="mb-3">
+                    <label for="img_src" class="form-label">Image URL</label>
+                    <input type="text" class="form-control" id="img_src" #img_src [value]="image_src" />
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary" (click)="onClick(img_name.value, img_src.value)">Add</button>
+                </div>
+                <span>{{label}}</span>
+         
+            </div>
+            <div class="col-md-6 border p-3 mb-3" style="height: 500px;">
+                <h4 class="fw-bold">Display Image</h4>
+                <div class="mb-3 d-flex justify-content-between ">
+                    <input type="text" class="form-control me-4" placeholder="Image Name" #img_info />
+                    <button class="btn btn-primary" (click)="displayImage(img_info.value)">Display</button>
+                </div>
+
+                <img [src]="this_img" alt="" class="w-100" style="height: 370px" [hidden]="imageHidden" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
