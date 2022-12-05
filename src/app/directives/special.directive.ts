@@ -1,10 +1,13 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appSpecial]'
 })
-export class SpecialDirective {
+export class SpecialDirective implements OnInit {
 
-  constructor() { }
+  constructor(private element: ElementRef) { }
+
+  ngOnInit(): void {
+  }
 
 }

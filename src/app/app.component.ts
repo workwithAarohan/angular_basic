@@ -6,5 +6,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-first-project';
+  items: string[] = [];
+
+  reset = "";
+
+  formClass = "form-control";
+  formStyle = {'width': '400px'};
+
+  constructor() {
+
+  }
+
+  addItem(foodItem: string)
+  {
+    this.items.push(foodItem);
+    this.reset="";
+  }
+
+  removeItem(indexItem: number)
+  {
+    this.items = this.items.filter((val, index) => index != indexItem);
+  }
 }
