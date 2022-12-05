@@ -17,8 +17,8 @@ export class BindingComponent implements OnInit, AfterViewInit {
   onClick(username: string)
   {
     this.text_label = "Username: " + username;
-    this.reset = " ";
-    this.user_name = " ";
+    this.reset = "";
+    this.user_name = "";
   }
   ngOnInit(): void {
     throw new Error('Method not implemented.');
