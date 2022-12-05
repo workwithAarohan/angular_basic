@@ -6,16 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  items: string[] = [];
+  items: string[] = ['Java', 'Angular', 'SSIS'];
 
   reset = "";
 
   formClass = "form-control";
   formStyle = {'width': '400px'};
 
-  constructor() {
-
-  }
+  constructor() {}
 
   addItem(foodItem: string)
   {

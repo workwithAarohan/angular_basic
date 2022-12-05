@@ -4,7 +4,7 @@
 <!-- <app-cards></app-cards> -->
 
 
-<label for="">Enter new Item: </label>
-<input type="text" [ngClass]="formClass" [ngStyle]="formStyle" (keyup.enter)="addItem(itemInput.value)" #itemInput [(ngModel)]="reset"> 
+<!-- <label for="">Enter new Item: </label>
+<input type="text" [ngClass]="formClass" [ngStyle]="formStyle" (keyup.enter)="addItem(itemInput.value)" #itemInput [(ngModel)]="reset">  -->
 
 <app-child [items]="items" (deleteItem)="removeItem($event)"></app-child>

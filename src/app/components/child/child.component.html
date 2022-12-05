@@ -4,7 +4,7 @@
             <mat-card *ngFor="let item of itemArr; let i = index" class="mb-3">
                 <div class="d-flex justify-content-between">
                     <mat-card-content>{{item}}</mat-card-content>
-                    <button (click)="deleteItem(i)" [ngStyle]="styleOne" >Delete</button>
+                    <button (click)="deleteItem(i)" [ngStyle]="styleOne">Delete</button>
                 </div>
             </mat-card>
         </div>
