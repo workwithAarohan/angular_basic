@@ -10,9 +10,10 @@
                         class="form-control me-3" 
                         [(ngModel)]="reset" 
                         #username />
-                    <button class="btn btn-primary"
+                    <button
                         [disabled]="reset==''" 
-                        (click)="onClick(username.value)">Submit</button>
+                        (click)="onClick(username.value)"
+                        [ngClass]="buttonClass">Submit</button>
                 </div>
             </div>
             <span class="mt-4">{{text_label}}</span>

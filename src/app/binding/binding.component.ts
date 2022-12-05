@@ -14,6 +14,8 @@ export class BindingComponent implements OnInit, AfterViewInit {
   reset = "";
   user_name = "";
 
+  buttonClass = "btn btn-primary";
+
   onClick(username: string)
   {
     this.text_label = "Username: " + username;
