@@ -1,4 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {CardItem} from '../../interfaces/CardItem.interface';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material/icon';
+
+const THUMBUP_ICON =
+  `
+  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.` +
+  `44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5` +
+  `1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"/>
+  </svg>
+`;
 
 @Component({
   selector: 'app-cards',
@@ -6,70 +19,60 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards.component.css']
 })
 
-export class CardsComponent implements OnInit{
-  // default = "placeholder";
-  // btnDisabled = true;
+export class CardsComponent implements OnInit {
+  // String Interpolation
+  // title: string = 'Angular';
 
-  // px = 10;
+  // cards: CardItem[] = [
+  //   {title: 'Maia', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4gFvCcCD9UWyCancNj49D4jCCUCjoIx2XJZnReyu33w&s', likeCount: 0 },
+  //   {title: 'Dylan', image: 'https://material.angular.io/assets/img/examples/shiba2.jpg', likeCount: 0},
+  //   {title: 'Minoru', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzx4ylDY1QpPqnc0rJX4XgH0Ve2ecEnE44h_coFoEsi2U08FkzW-XF3PtLGC_H3HoCOdA&usqp=CAU', likeCount: 0}
+  // ];
 
-  imageHidden = "hidden";
+  // Receiving the value of cards from its parent component i.e. AppComponent
+  @Input() cards: CardItem[] = [];
 
-  label = "";
-  displayLabel = "";
+  // To notify the parent about the change
+  @Output() cardEvent$ = new EventEmitter<CardItem>();
 
-  image_src = "";
-  image_name = "";
-  this_img = "";
+  @Output() caredDelete$ = new EventEmitter<number>();
 
-  image = new Map();
+  // Property binding
+  avatar:string = "https://angular.io/assets/images/logos/angular/angular.png";
+  isLikeDisabled: boolean = false;
+  isShareDisabled: boolean = true;
 
+  // String Interpolation
+  // likeCount:number = 0;
 
-  constructor() {}
+  // Class Binding
+  divClass: string = 'card-container';
+  // Style Binding
+  containerStyle: string = 'padding: 1em;';
+  size:string = '17px';
+  margin: string = "10px 10px -10px 10px";
+
+  // Event Binding
+  onLike(cardTitle: string): void {
+    const index = this.cards.findIndex(x => x.title == cardTitle);
+    this.cards[index].likeCount++;
+  }
+
+  onAddCard(cardTitle: string, cardImage: string): void {
+    var cardItem: CardItem = {title: cardTitle, image: cardImage, likeCount: 0};
+    this.cardEvent$.emit(cardItem);
+  }
+
+  deleteItem(index: number)
+  {
+    this.caredDelete$.emit(index);
+  }
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
+  }
 
   ngOnInit(): void {
       
   }
 
-  onClick(img_name: string, img_src: string) 
-  {
-    this.image.set(img_name, img_src);
-    this.label = 'Image "'+  img_name + '" added successfully.';
-    console.log(this.image);
-  }
-
-  displayImage(img_info: string) 
-  {
-    if(this.image.has(img_info))
-    {
-      this.displayLabel = img_info + '-Image found';
-      this.this_img = this.image.get(img_info);
-    }
-    else
-    {
-      this.displayLabel = "Image Not Found";
-      this.this_img = "https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png";
-    }
-
-    this.imageHidden = "";
-  }
-
-  // onClick(){
-  //   console.log("Click Event");
-  // }
-
-
-  // desc()
-  // {
-  //   this.px--;
-  // }
-
-  // inc()
-  // {
-  //   this.px++;
-  // }
-
-  // ClickIt(phone: string)
-  // {
-  //     console.log(phone);
-  // }
 }

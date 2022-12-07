@@ -1,59 +1,56 @@
-<!-- property binding -->
+<div class="container mt-3">
+    <section>
+        <mat-form-field appearance="fill" class="me-2">
+          <mat-label>Title</mat-label>
+          <input type="text" matInput #cardTitle>
+        </mat-form-field>
 
-<!-- <input type="text" [value]="default" />
+        <mat-form-field appearance="fill" class="me-2">
+            <mat-label>Image</mat-label>
+            <input type="text" matInput #cardImage>
+        </mat-form-field>
 
-<button type="button" [disabled]="btnDisabled">Click</button> -->
+        <button mat-raised-button color="primary" (click)="onAddCard(cardTitle.value, cardImage.value)">Add Card</button>
+    </section>
+</div>
 
-<!-- event binding -->
-<!-- <button type="button" (click)="onClick()">Click Me</button> -->
+<!-- [class] -- Class Binding || [style] -- Style Binding -->
+<div [class]="divClass" [style]="containerStyle">
+    <mat-card *ngFor="let card of cards; let i = index" class="card mb-3">
+        <mat-card-header>
+            <!-- {{title}} -- String Interpolation || [style.fontSize] -- Style Binding -->
+            <mat-card-title [style.fontSize]="size" appSpecial>{{card.title}}</mat-card-title>
 
-<!-- two way binding -->
-<!-- <div>
-    <button type="button" (click)="desc()">-</button>
-    <button type="button" (click)="inc()">+</button>
-    <span [style.font-size.px]="px">Font Size {{px}}px</span>
-</div> -->
+            <!-- *ngIf -- in-built Structural Directive -->
+            <mat-card-subtitle *ngIf="card.likeCount" class="d-flex">
+                <span class="me-2 fs-6 mt-1">
+                    {{card.likeCount}} 
+                </span>
+                <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Icon"></mat-icon>
+            </mat-card-subtitle>
 
-<!-- local reference -->
-<!-- <input type="text" id="phoneNo" #phone />
-<button type="button"(click)="ClickIt(phone.value)">Click It</button> -->
+            <!-- Property Binding -->
+            <img [src]="avatar" alt="" mat-card-avatar>
 
-<!-- ngmodel -->
+            <button mat-raised-button color="warn" (click)="deleteItem(i)">Delete</button>
 
-<div class="container mt-4">
-    <div class="mb-4">
+            
+        </mat-card-header>
+
+        <!-- Property Binding -->
+        <img [src]="card.image" alt="" mat-card-image style="width: 100%; height: 300px"> 
         
-        <div class="row justify-content-between">
-            <div class="col-md-5 border p-3 mb-3 h-100">
-                <h4 class="fw-bold">Add Images</h4>
-                
-                <div class="mb-3">
-                    <label for="img_name" class="form-label">Image Name</label>
-                    <input type="text" class="form-control" id="img_name" #img_name [value]="image_name" />
-                </div>
-                <div class="mb-3">
-                    <label for="img_src" class="form-label">Image URL</label>
-                    <input type="text" class="form-control" id="img_src" #img_src [value]="image_src" />
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary" (click)="onClick(img_name.value, img_src.value)">Add</button>
-                </div>
-                <span>{{label}}</span>
-         
-            </div>
-            <div class="col-md-6 border p-3 mb-3" style="height: 400px;">
-                <h4 class="fw-bold">Display Image</h4>
-                <div class="mb-3 d-flex justify-content-between ">
-                    <input type="text" class="form-control me-4" placeholder="Image Name" #img_info />
-                    <button class="btn btn-primary" (click)="displayImage(img_info.value)">Display</button>
-                </div>
+        <mat-form-field [style.margin]="margin">
+            <mat-label appearance="fill" [(ngModel)]="card.title" >Title</mat-label>
+            <input matInput>
+        </mat-form-field>
 
-                <span><b>{{displayLabel}}</b></span>
-
-                <img [src]="this_img" alt="" class="w-100 mt-2" style="height: 240px" [hidden]="imageHidden" />
-            </div>
-        </div>
-    </div>
+        <mat-card-actions >
+            <!-- [diabled] - Property Binding || (click) -- Event binding -->
+            <button mat-button [disabled]="isLikeDisabled" (click)="onLike(card.title)">LIKE</button>
+            <button mat-button [disabled]="isShareDisabled">SHARE</button>
+        </mat-card-actions>
+    </mat-card>
 </div>
 
 
