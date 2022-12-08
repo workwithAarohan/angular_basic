@@ -14,7 +14,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     PeriodicTableComponent,
-    DataGridComponent
+    DataGridComponent,
+    DataGridItemComponent,
   ],
   imports: [
     CommonModule,
