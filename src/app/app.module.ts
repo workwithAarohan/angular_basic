@@ -22,11 +22,8 @@ import { AppRoutingModule } from './modules/app-routing/app-routing.module';
     providers: [],
     bootstrap: [AppComponent],
     imports: [
-        BrowserModule,
         BrowserAnimationsModule,
         MaterialModule,
-        CardWrapperModule,
-        PeriodicTableModule,
         AppRoutingModule
     ]
 })

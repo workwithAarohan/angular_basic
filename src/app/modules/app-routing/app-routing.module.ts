@@ -5,9 +5,20 @@ import { CardWrapperComponent } from 'src/app/forms/card-wrapper/card-wrapper.co
 import { PeriodicTableComponent } from 'src/app/forms/periodic-table/periodic-table.component';
 
 const routes: Routes = [
-  {path: '', component: CardWrapperComponent},
-  {path: 'cards', component: CardWrapperComponent},
-  {path: 'periodic-table', component: PeriodicTableComponent}
+  // {path: '', component: CardWrapperComponent},
+  {
+    path: 'cards', 
+    loadChildren: () => import('../card-wrapper/card-wrapper.module').then(m => m.CardWrapperModule)
+  },
+  {
+    path: 'periodic-table', 
+    loadChildren: () => import('../periodic-table/periodic-table.module').then(m => m.PeriodicTableModule)
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  }
 
 ];
 

@@ -32,7 +32,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
   ],
   exports: [
-    BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,

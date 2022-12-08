@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 import { PeriodicTableComponent } from '../../forms/periodic-table/periodic-table.component';
 import { DataGridComponent } from 'src/app/components/data-grid/data-grid.component';
 import { MaterialModule } from '../material/material.module';
+import { RouterModule, Routes } from '@angular/router';
 
 
-
+const routes: Routes = [
+  {path: '', component: PeriodicTableComponent}
+]; 
 @NgModule({
   declarations: [
     PeriodicTableComponent,
@@ -13,10 +16,11 @@ import { MaterialModule } from '../material/material.module';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
-    PeriodicTableComponent
+    RouterModule
   ]
 })
 export class PeriodicTableModule { }
