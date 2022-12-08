@@ -10,12 +10,8 @@ import { SpecialDirective } from './directives/special.directive';
 // import { DataGridComponent } from './components/data-grid/data-grid.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CardWrapperModule } from "./modules/card-wrapper/card-wrapper.module";
-import { CardWrapperComponent } from './forms/card-wrapper/card-wrapper.component';
-import { CardsComponent } from "./components/cards/cards.component";
 import { PeriodicTableModule } from './modules/periodic-table/periodic-table.module';
-// import { CardsWrapperModule } from "./cards-wrapper.module";
-// import { CardsWrapperComponent } from './forms/cards-wrapper/cards-wrapper.component';
-// import { PeriodicTableComponent } from './forms/periodic-table/periodic-table.component';
+import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 
 @NgModule({
     declarations: [
@@ -30,7 +26,8 @@ import { PeriodicTableModule } from './modules/periodic-table/periodic-table.mod
         BrowserAnimationsModule,
         MaterialModule,
         CardWrapperModule,
-        PeriodicTableModule
+        PeriodicTableModule,
+        AppRoutingModule
     ]
 })
 export class AppModule { }
