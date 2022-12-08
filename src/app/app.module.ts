@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CardWrapperModule } from "./modules/card-wrapper/card-wrapper.module";
 import { CardWrapperComponent } from './forms/card-wrapper/card-wrapper.component';
 import { CardsComponent } from "./components/cards/cards.component";
+import { PeriodicTableModule } from './modules/periodic-table/periodic-table.module';
 // import { CardsWrapperModule } from "./cards-wrapper.module";
 // import { CardsWrapperComponent } from './forms/cards-wrapper/cards-wrapper.component';
 // import { PeriodicTableComponent } from './forms/periodic-table/periodic-table.component';
@@ -28,7 +29,8 @@ import { CardsComponent } from "./components/cards/cards.component";
         BrowserModule,
         BrowserAnimationsModule,
         MaterialModule,
-        CardWrapperModule
+        CardWrapperModule,
+        PeriodicTableModule
     ]
 })
 export class AppModule { }

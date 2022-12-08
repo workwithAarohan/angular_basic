@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { CardItem } from './interfaces/CardItem.interface';
-import { PeriodicElement } from './interfaces/PeriodicElement.interface';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
