@@ -9,5 +9,7 @@
 
 <!-- cardItems -- Parent Component (AppComponent)
     cards -- Child Component (CardComponent) -->
-<app-cards [cards]="cardItems" (cardEvent$)="addCard($event)" (caredDelete$)="removeCard($event)"></app-cards>
-<app-data-grid [tableData]="tableData" [columnHeader]="columnHeader"></app-data-grid>
+<!-- <app-cards [cards]="cardItems" (cardEvent$)="addCard($event)" (caredDelete$)="removeCard($event)"></app-cards>
+<app-data-grid [tableData]="tableData" [columnHeader]="columnHeader"></app-data-grid> -->
+
+<app-card-wrapper></app-card-wrapper>
