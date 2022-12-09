@@ -6,6 +6,8 @@ import { MaterialModule } from './modules/material/material.module';
 import { SpecialDirective } from './directives/special.directive';
 import { HeaderComponent } from './components/header/header.component';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
+import { AuthService } from './services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -13,12 +15,13 @@ import { AppRoutingModule } from './modules/app-routing/app-routing.module';
         SpecialDirective,
         HeaderComponent,
     ],
-    providers: [],
+    providers: [AuthService],
     bootstrap: [AppComponent],
     imports: [
         BrowserAnimationsModule,
         MaterialModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpClientModule
     ]
 })
 export class AppModule { }
