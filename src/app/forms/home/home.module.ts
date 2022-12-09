@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from 'src/app/forms/home/home.component';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../../material/material.module';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [

@@ -9,19 +9,19 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '', 
-    loadChildren: () => import('../home/home.module').then(m => m.HomeModule)
+    loadChildren: () => import('./forms/home/home.module').then(m => m.HomeModule)
   },
   {
     path: 'cards', 
-    loadChildren: () => import('../card-wrapper/card-wrapper.module').then(m => m.CardWrapperModule)
+    loadChildren: () => import('./forms/card-wrapper/card-wrapper.module').then(m => m.CardWrapperModule)
   },
   {
     path: 'periodic-table', 
-    loadChildren: () => import('../periodic-table/periodic-table.module').then(m => m.PeriodicTableModule)
+    loadChildren: () => import('./forms/periodic-table/periodic-table.module').then(m => m.PeriodicTableModule)
   },
   { 
     path: '**',
-    loadChildren: () => import('../page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) 
+    loadChildren: () => import('./components/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) 
   },
   {
     path: '',
