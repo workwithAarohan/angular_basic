@@ -1,6 +1,26 @@
-<mat-card>
+<!-- <mat-card>
   <h3>{{id}}</h3>
   <ng-container *ngFor="let key of objectKeys(data)">
     <h5>{{key}}: {{data[key]}}</h5>
   </ng-container>
-</mat-card>
+</mat-card> -->
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-3">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            {{data['element']}}
+          </mat-card-title>
+
+          <mat-card-subtitle>
+            {{data['weight']}}
+          </mat-card-subtitle>
+
+          <p class="fs-3 mt-2" mat-card-avatar>{{data['symbol']}}</p>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+</div>
