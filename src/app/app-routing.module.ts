@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 // import { CardWrapperComponent } from 'src/app/forms/card-wrapper/card-wrapper.component';
 // import { PeriodicTableComponent } from 'src/app/forms/periodic-table/periodic-table.component';
 // import { HomeComponent } from 'src/app/forms/home/home.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'periodic-table', 
-    loadChildren: () => import('./forms/periodic-table/periodic-table.module').then(m => m.PeriodicTableModule)
+    loadChildren: () => import('./forms/periodic-table/periodic-table.module').then(m => m.PeriodicTableModule),
+    canActivate: [AuthGuard]
   },
   { 
     path: '**',
