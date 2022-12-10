@@ -1,10 +1,99 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { filter, map, Observable, Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
+  observable: Observable<number>;
+  
+  subscriber: Subscription;
+
+  secondSub: Subscription;
+  
+  ngOnInit(): void {
+    this.observable = new Observable(observer => {
+      observer.next(101);
+      setTimeout(() => observer.next(5), 5000);
+      observer.next(1);
+      setTimeout(() => observer.next(2), 1000);
+      setTimeout(() => observer.next(3), 2000);
+      setTimeout(() => {
+        observer.next(66);
+        observer.complete();
+      }, 7000);
+      setTimeout(() => observer.error('An error occurred!!'), 6000)
+    });
+    
+    this.subscriber = this.observable.pipe(
+      map(v => v * 2),
+      filter(v => v < 100)
+      ).subscribe({
+      next(val) {
+        console.log(`next val is ${val}`);
+      },
+      error(err) {
+        console.log(`something went wrong: ${err}`);
+      },
+      complete() {
+        console.log('completed');
+      }
+    });
+
+    setTimeout(() => {
+      this.secondSub = this.observable.pipe().subscribe({
+        next(val) {
+          console.log(`from second sub next val is ${val}`);
+        },
+        error(err) {
+          console.log(`from second sub something wen wronf: ${err}`);
+        },
+        complete() {
+          console.log('from second sub completed');
+        }
+      });
+    }, 2000);
+  }
+  
+  ngOnDestroy(): void {
+    this.subscriber.unsubscribe();
+    this.secondSub.unsubscribe();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // cardItems: CardItem[] = [
   //   {title: 'Maia', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4gFvCcCD9UWyCancNj49D4jCCUCjoIx2XJZnReyu33w&s', likeCount: 0 },
   //   {title: 'Dylan', image: 'https://material.angular.io/assets/img/examples/shiba2.jpg', likeCount: 0},
