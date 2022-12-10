@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {CardItem} from '../../interfaces/CardItem.interface';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const THUMBUP_ICON =
   `
@@ -35,7 +36,7 @@ export class CardsComponent implements OnInit {
   // To notify the parent about the change
   @Output() cardEvent$ = new EventEmitter<CardItem>();
 
-  @Output() caredDelete$ = new EventEmitter<number>();
+  @Output() cardDelete$ = new EventEmitter<number>();
 
   // Property binding
   avatar:string = "https://angular.io/assets/images/logos/angular/angular.png";
@@ -59,20 +60,27 @@ export class CardsComponent implements OnInit {
   }
 
   onAddCard(cardTitle: string, cardImage: string): void {
-    var cardItem: CardItem = {title: cardTitle, image: cardImage, likeCount: 0};
+    var cardItem: CardItem = {id:4, title: cardTitle, image: cardImage, likeCount: 0};
     this.cardEvent$.emit(cardItem);
   }
 
   deleteItem(index: number)
   {
-    this.caredDelete$.emit(index);
+    this.cardDelete$.emit(index);
   }
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, 
+    private readonly router: Router,
+    private readonly route: ActivatedRoute) {
     iconRegistry.addSvgIconLiteral('thumbs-up', sanitizer.bypassSecurityTrustHtml(THUMBUP_ICON));
   }
 
   ngOnInit(): void {
       
+  }
+
+  goToItemDetails(item: CardItem): void {
+    this.router.navigate(['item-details', item.id], {state:{item}, relativeTo: this.route}).then();
   }
 
 }

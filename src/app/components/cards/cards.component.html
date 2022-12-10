@@ -49,6 +49,7 @@
             <!-- [diabled] - Property Binding || (click) -- Event binding -->
             <button mat-button [disabled]="isLikeDisabled" (click)="onLike(card.title)">LIKE</button>
             <button mat-button [disabled]="isShareDisabled">SHARE</button>
+            <button mat-button (click)="goToItemDetails(card)">View</button>
         </mat-card-actions>
     </mat-card>
 </div>

@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
+import { CardItemComponent } from './components/cards/card-item/card-item.component';
 
 @NgModule({
     declarations: [
