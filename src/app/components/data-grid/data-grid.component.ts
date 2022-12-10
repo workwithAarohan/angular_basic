@@ -12,22 +12,35 @@ import { PeriodicElement } from 'src/app/interfaces/PeriodicElement.interface';
 export class DataGridComponent implements OnInit {
 
   // @Input() tableData: PeriodicElement[] = [];
-  @Input() tableData: any[] = [];
-  @Input() columnHeader: {[key: string]: string | number;} = {};
+  // @Input() tableData: any[] = [];
+
+  _tableData: IDataGrid[] = [];
   objectKeys = Object.keys;
   dataSource!: MatTableDataSource<any>; 
+
+
+  @Input() columnHeader: {[key: string]: string | number;} = {};
+
+  @Input() set tableData(data: IDataGrid[]) {
+    this._tableData = data;
+    this.dataSource = new MatTableDataSource(this._tableData);
+  }
+
+  get tableData(): IDataGrid[] {
+    return this._tableData;
+  }
 
   constructor(private readonly router: Router, 
     private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource(this.tableData);
+    this.dataSource = new MatTableDataSource(this._tableData);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['tableData']?.currentValue?.length !== changes['tableData']?.previousValue?.length) {
-      this.dataSource = new MatTableDataSource(this.tableData);
-    }
+    // if(changes['tableData']?.currentValue?.length !== changes['tableData']?.previousValue?.length) {
+    //   this.dataSource = new MatTableDataSource(this.tableData);
+    // }
   }
 
   goToItemDetails(data: IDataGrid): void {

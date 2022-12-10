@@ -28,8 +28,10 @@ export class PeriodicTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<IDataGrid[]>('http://localhost:3000/periodicElement').subscribe(elements => {
-      this.periodicElements = elements;
+      this.periodicTableService.periodicElements$$$.next(elements);
     });
+
+    this.periodicTableService.periodicElements$$$.subscribe(elements => this.periodicElements = [].concat(elements));
   }
 
   addElement(): void {
